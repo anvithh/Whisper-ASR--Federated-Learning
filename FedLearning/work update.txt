@@ -1,0 +1,10 @@
+# Whisper-ASR--Federated-Learning
+
+In the provided code, a Federated Learning system is implemented using the FLOWER library, consisting of a server and two clients.
+
+The MNIST dataset has been used for this learning. 
+
+I have used non iid datasets to show how clients with different data distributions can participate in federated learning, making it more efficient.
+
+config (no. of rounds) has been set to 4.
+after each round, we can see increase in the accuracy of the global model.
