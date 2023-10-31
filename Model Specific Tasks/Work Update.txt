@@ -1,6 +1,6 @@
 # telugutest.py
 This is a python code which is used for predicting the resulting text for an audio. It is performed by taking openai/whisper-tiny model from hugging face. Where the code even resamples if the audio frequency
-is not equal to 16000 because whisper has been trained for audio frequency 16000Hz.
+is not equal to 16000 because whisper has been trained for audio frequency 16000Hz
 I have used female voices dataset from  OpenSLR SLR66.
 The model is giving the output as english text where the output needs to be in telugu. So, code should be changed such that it gives telugu text as output.
 I have taken 2 rows from dataset to demonstrate what is happening. (demo.png)
