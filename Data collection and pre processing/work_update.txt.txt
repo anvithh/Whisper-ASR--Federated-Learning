@@ -3,7 +3,7 @@ first we get audio data and it's transcription from hugging face
 datasets: google fleurs
 From here, downloaded audio files of languages hindi,telugu,tamil and bengali and it transcription file
 
-but the dataset has the following attributes:
+But the dataset has the following attributes:
 id (int): ID of audio sample
 num_samples (int): Number of float values
 path (str): Path to the audio file
@@ -15,9 +15,12 @@ lang_id (int): Class id of language
 lang_group_id (int): Class id of language group
 
 But this complete data is not neccesary for us.we only need the "audio,raw_transcription,transcription" are needed.
+
 To do that use the python code(file_editing.py) to edit the tsv file downloaded from the hugging face goole fleurs datasets.
+
 It ask the input file name and takes the file as input and and ask for thout file to store the output.
 
 And the file with the required attribute is created.
-and the related audio file are also downloaded and ectracted but can't able to upload to the git repository as the size of file us exceeding.
+
+And the related audio file are also downloaded and extracted but can't able to upload to the git repository as the size of file us exceeding.
 
