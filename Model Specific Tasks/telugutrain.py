@@ -1,3 +1,4 @@
+
 import os
 import torch
 import pandas as pd
@@ -7,14 +8,12 @@ import datasets
 from transformers import Wav2Vec2Processor 
 from transformers import DataCollatorWithPadding
 
-# Load your custom dataset from a CSV file
 dataset_path = './female/dup.csv'
 custom_dataset = pd.read_csv(dataset_path)
 
-# Directory where audio files are located
 audio_files_dir = './female/'
 
-# Load the pre-trained Whisper model and tokenizer
+
 model_name = "openai/whisper-tiny"
 model = WhisperForConditionalGeneration.from_pretrained(model_name)
 tokenizer = WhisperTokenizer.from_pretrained(model_name)
@@ -22,7 +21,7 @@ tokenizer = WhisperTokenizer.from_pretrained(model_name)
 processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
 
 
-# Define a function to load and preprocess audio data
+
 def preprocess_csv_data(example):
     audio_files = example["audio"]
 
@@ -45,20 +44,18 @@ def preprocess_csv_data(example):
             print(f"Error processing audio file: {audio_file}")
             print(f"Exception: {str(e)}")
 
-    return {"data": processed_examples}  # Return a dictionary with the list of processed examples
+    return {"data": processed_examples}  
 
-# Create a `datasets.Dataset` object
 custom_dataset = datasets.Dataset.from_pandas(custom_dataset)
 
-# # Tokenize and preprocess your custom dataset
+
 custom_dataset = custom_dataset.map(preprocess_csv_data, batched=True)
 
-# # Flatten the list of processed examples
+
 custom_dataset = custom_dataset.flatten()
 
 # train_dataset, eval_dataset = custom_dataset.train_test_split(test_size=0.1, seed=42)
 
-# # Tokenize and preprocess your custom dataset
 # train_dataset = train_dataset.map(preprocess_csv_data, batched=True)
 # eval_dataset = eval_dataset.map(preprocess_csv_data, batched=True)
 
@@ -66,7 +63,6 @@ custom_dataset = custom_dataset.flatten()
 
 # print("Number of examples in the processed dataset:", len(custom_dataset))
 
-# Define a custom data collator
 class CustomDataCollator(DataCollatorWithPadding):
     def collate_batch(self, batch):
         audio_inputs = self.prepare_audio_inputs([example["audio"] for example in batch])
@@ -96,14 +92,13 @@ class CustomDataCollator(DataCollatorWithPadding):
 # processor = WhisperProcessor.from_pretrained(model_name)
 
 # train_dataset = custom_dataset.train_test_split(test_size=0.2) 
-# Usage
 custom_data_collator = CustomDataCollator(tokenizer)
 
 # train_dataset = train_dataset['train']
 # eval_dataset = train_dataset['test']
 
 
-# Define training arguments
+
 training_args = TrainingArguments(
     output_dir="./whisper_finetuned_model",
     evaluation_strategy="steps",
@@ -116,17 +111,15 @@ training_args = TrainingArguments(
     logging_dir="./logs",
 )
 
-# Create a Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
     train_dataset=custom_dataset,
-    data_collator=custom_data_collator,  # Use the custom data collator
+    data_collator=custom_data_collator, 
 )
 
-# Fine-tune the model on the custom dataset
 trainer.train()
 
-# Save the fine-tuned model
 model.save_pretrained("./fine_tuned_whisper_model")
 tokenizer.save_pretrained("./fine_tuned_whisper_model")
+
