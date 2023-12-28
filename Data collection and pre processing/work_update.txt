@@ -14,13 +14,31 @@ gender (int): Class id of gender
 lang_id (int): Class id of language
 lang_group_id (int): Class id of language group
 
-But this complete data is not neccesary for us.we only need the "audio,raw_transcription,transcription" are needed.
+But this complete data is not neccesary for us.we only need the "audio,transcription" are needed.
 
-To do that use the python code(file_editing.py) to edit the tsv file downloaded from the hugging face goole fleurs datasets.
+If we need to check the attributed of the tsv file the we can use file_details.py and we can choose the required attributes.
 
-It ask the input file name and takes the file as input and and ask for thout file to store the output.
+To do that use the python code(file_editing.py) to edit the tsv file downloaded from the hugging face google fleurs datasets.
+
+It ask the input file name and takes the file as input and and ask for output file name and create a file to store the output.
 
 And the file with the required attribute is created.
 
 And the related audio file are also downloaded and extracted but can't able to upload to the git repository as the size of file us exceeding.
 
+we can download the audio samples file named dev.tar.gz from the links given below for each language:
+HINDI:
+https://huggingface.co/datasets/google/fleurs/tree/main/data/hi_in/audio 
+BENGALI:
+https://huggingface.co/datasets/google/fleurs/tree/main/data/bn_in/audio 
+TELUGU:
+https://huggingface.co/datasets/google/fleurs/tree/main/data/te_in/audio 
+TAMIL:
+https://huggingface.co/datasets/google/fleurs/tree/main/data/ta_in/audio 
+
+Then we need to do preprocessing according to the requirements like the transcription should be get rid of commas,full stops,etc.,
+for this we can use the code preprocessing.py
+
+Then for our model we need the file in the csv format so by using the code tsv_to_csv,py we can convert the above tsv file to csv format.
+
+Finally ,we need to divide the data samples into training data and testing data,here i have used testing data as 40% and traing data as 60% by using the code testandtraining.py . and by changing the percentage we can divide it into divfferent train and test datasets. 
