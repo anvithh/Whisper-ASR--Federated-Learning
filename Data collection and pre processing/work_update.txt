@@ -42,3 +42,7 @@ for this we can use the code preprocessing.py
 Then for our model we need the file in the csv format so by using the code tsv_to_csv,py we can convert the above tsv file to csv format.
 
 Finally ,we need to divide the data samples into training data and testing data,here i have used testing data as 40% and traing data as 60% by using the code testandtraining.py . and by changing the percentage we can divide it into divfferent train and test datasets. 
+
+And also for english dataset we can do the process of removing the data from the samples based on indian accent using english_edit.py 
+then we can take the requied column from that like filename/path and trascription and then with the help of the file and the filenames in the first column of the english_final_output.csv file we can take out the indian accent related audios from the source folder and store it to a destination folder(cv-other-dev). 
+nw verify the file text and audio transcription by using audio to text converter tools so that every thing is to be correct.
